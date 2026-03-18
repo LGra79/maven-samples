@@ -3,15 +3,13 @@ pipeline {
 
   tools {
     maven 'DHT_MAVEN'
+    jdk 'DHT_SENSE'
   }
 
   stages {
     stage('Build') {
       steps {
-        script {
-          def mvnHome = tool 'DHT_MAVEN'
-          sh "${mvnHome}/bin/mvn clean test verify"
-        }
+        sh 'mvn clean test verify -Dmaven.compiler.release=11'
       }
     }
   }
