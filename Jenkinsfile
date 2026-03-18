@@ -4,7 +4,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '/opt/homebrew/opt/maven/bin/mvn clean test verify'
+        script {
+          def mvnHome = tool 'DHT_MVN'
+          sh "${mvnHome}/bin/mvn clean test verify"
+        }
       }
     }
   }
