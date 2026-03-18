@@ -4,10 +4,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh """
-          export PATH=/opt/homebrew/opt/maven/bin:\$PATH
-          mvn clean test verify
-        """
+        sh '/opt/homebrew/opt/maven/bin/mvn clean test verify'
       }
     }
   }
