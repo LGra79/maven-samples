@@ -1,11 +1,16 @@
 pipeline {
   agent any
+  tools { 
+      maven 'DHT_MVN' 
+      jdk 'DHT_SENSE' 
+  }
   stages {
     stage('Build') {
       steps {
-        sh 'mvn clean test verify'
+        withEnv(["PATH+MAVEN=${tool 'DHT_MVN'}/bin"]) {
+          sh 'mvn clean test verify'
+        }
       }
     }
-
   }
 }
